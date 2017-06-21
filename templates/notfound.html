@@ -1,0 +1,7 @@
+<!doctype html>
+<title>Bookmark Not Found</title>
+{% if searchword %}
+  <h1>Oh no!  Could not retrieve "{{ searchword }}" from the database!</h1>
+{% else %}
+  <h1>Didn't find something?</h1>
+{% endif %}

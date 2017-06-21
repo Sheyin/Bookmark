@@ -1,0 +1,9 @@
+<!doctype html>
+<title>Bookmark Found</title>
+{% if name %}
+  <h1>Successfully retrieved {{ name }} from the database!</h1>
+  <p> The url is: {{ url }} </p>
+  <p> Date Visited: {{ dateVisited }} </p>
+{% else %}
+  <h1>Found something?</h1>
+{% endif %}
