@@ -1,5 +1,20 @@
 <!doctype html>
-<title>Bookmark Not Found</title>
+
+<html>
+	<head>
+		<title>Bookmark not found</title>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+		<meta charset = "UTF-8">
+	</head>
+<body>
+
+<div id="outer">
+<div id="inner">
+
+<div class="centered">
+<h2>Bookmark not found!</h2>
+</div>
+
 {% if searchword %}
   <h1>Oh no!  Could not retrieve "{{ searchword }}" from the database!</h1>
 {% else %}
