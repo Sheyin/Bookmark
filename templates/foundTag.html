@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Bookmarks Retrieved - Category</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<meta charset = "UTF-8">
+	</head>
+<body>
+
+<div id="outer">
+<div id="inner">
+
+<div class="centered">
+<h2> Retrieving a bookmark: </h2>
+</div>
+
+{% if results %}
+<div class="results">
+	<h2>{{ category }} bookmarks:</h2>
+	{% for x in results %}
+	<div class="bold"><a href={{ url }}>{{ name }}</div>
+	<div> {{ Description }}</div>
+	<p>Date Visited: {{ dateVisited }} </p>
+{% endfor %}
+
+{% else %}
+	<h1>No results returned.</h1>
+{% endif %}
+
+
+</div>
+</div>
+</body>
+</html>

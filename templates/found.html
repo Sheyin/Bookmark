@@ -1,9 +1,30 @@
 <!doctype html>
-<title>Bookmark Found</title>
-{% if name %}
+
+<html>
+	<head>
+		<title>Bookmark Retrieved</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<meta charset = "UTF-8">
+	</head>
+<body>
+
+<div id="outer">
+<div id="inner">
+
+<div class="centered">
+<h2> Retrieving a bookmark: </h2>
+</div>
+
+{% if url %}
   <h1>Successfully retrieved {{ name }} from the database!</h1>
-  <p> The url is: {{ url }} </p>
+  <p> The url is: <a href={{url}}>{{ url }}</a></p>
   <p> Date Visited: {{ dateVisited }} </p>
 {% else %}
   <h1>Found something?</h1>
 {% endif %}
+
+
+</div>
+</div>
+</body>
+</html>
