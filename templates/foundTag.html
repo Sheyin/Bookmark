@@ -18,17 +18,19 @@
 {% if results %}
 <div class="results">
 	<h2>{{ category }} bookmarks:</h2>
-	{% for x in results %}
-	<div class="bold"><a href={{ url }}>{{ name }}</div>
-	<div> {{ Description }}</div>
-	<p>Date Visited: {{ dateVisited }} </p>
-{% endfor %}
+	{% for name, url, description, dateAdded in results %}
+		<p>
+		<a href={{url}}>{{ name }}</a>
+		<br> {{ description }}
+		<br> {{ dateAdded }}
+		</p>
+	{% endfor %}
 
 {% else %}
 	<h1>No results returned.</h1>
 {% endif %}
 
-
+</div>
 </div>
 </div>
 </body>

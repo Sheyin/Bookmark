@@ -4,6 +4,8 @@ import secret
 import datetime
 import pprint	# Make objects look nicer in console
 from pymongo import MongoClient
+import re
+
 db = secret.dbpath
 
 app = Flask(__name__)
@@ -39,13 +41,31 @@ def createBookmark():
 @app.route("/get")
 def retrieveSite():
 	searchword = request.args.get('key', '')
-	site = db.find_one({"name": searchword})
-	#site = mongo.db.collectionname.find_one_or_404({'name': searchword})
-	#pprint.pprint("site: " + str(site))
-	if not site:
-		return render_template('notfound.html', searchword=searchword)
+	#searchterm = "/g/"
+	#site = db.find({"name": searchterm})
+	regex = re.compile('\w*' + searchword + '\w*')
+	site = db.find({"name": {"$regex": regex}})
+	# Just for debugging
+	name = ""
+	url = ""
+	desciption = ""
+	date = ""
+	results = []
+	for doc in site:
+		name = doc['name']
+		url = doc['url']
+		description = doc['description']
+		date = doc['dateVisited']
+		results.append((name, url, description, date))
+		print(str(doc))
+	if site.count() == 1:
+		return render_template('found.html', name=name, url=url, description=description)
+	elif site.count() >= 1:
+		return render_template('foundTag.html', results=results)
 	else:
-		return render_template('found.html', name=site['name'], url=site['url'], dateVisited=site['dateVisited'])
+		return render_template('notfound.html')
+		
+
 
 @app.route("/")
 def showHub():
