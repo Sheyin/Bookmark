@@ -1,15 +1,46 @@
 <!doctype html>
-<title>Adding a new bookmark</title>
 
-<p id = "form">
+<html>
+	<head>
+		<title>Adding a new bookmark</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<meta charset = "UTF-8">
+	</head>
+<body>
+
+<div id="outer">
+<div id="inner">
+
+<div class="centered">
+<h2> Adding a bookmark: </h2>
+</div>
+
+<div class="insidetable">
+<table class="center">
 <form action="/create" method="post">
-	<br>Name: <input type="text" name="name"> </ br>
-	<br>Url: <input type="text" name="url"> </ br>
-	<br>Description: <input type="text" name="description"> </ br>
-	<br>Tags: <input type="text" name="tags"> </ br>
-	<br>Added By: <input type="text" name="addedBy"> </ br>
-	<br><input type="submit">
+	<tr><td>Name: </td>
+		<td><input type="text" name="name" size=70></td></tr>
+	<tr><td>Url: </td>
+		<td><input type="text" name="url" size=70> </td></tr>
+	<tr><td>Description: </td>
+		<td><textarea name="description"></textarea></td></tr>
+	<tr><td>Tags: </td>
+		<td><input type="text" name="tags" size=70> </td></tr>
+	<tr><td>Added By: </td>
+		<td><input type="text" name="addedBy"> </td></tr>
+	<tr><td></td><td><div class="centered"><input type="submit" id="button"></div></td></tr>
 </form>
+</table>
+</div>
+
 <p>
+
+</p>
+
+</div>
+</div>
+
+</body>
+</html>
 
 <!-- I hope this works -->
