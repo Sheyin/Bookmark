@@ -15,12 +15,22 @@
 <h2> Retrieving a bookmark: </h2>
 </div>
 
-{% if url %}
+<div class="results">
+{% if results %}
+	<h2>{{ category }} bookmarks:</h2>
+	{% for name, url, description, dateAdded in results %}
+		<p>
+		<a href={{url}}>{{ name }}</a>
+		<br> {{ description }}
+		<br> Date Added: {{ dateAdded }}
+		</p>
+	{% endfor %}
+{% elif url %}
   <h1>Successfully retrieved {{ name }} from the database!</h1>
   <p> The url is: <a href={{url}}>{{ url }}</a></p>
   <p> Date Visited: {{ dateVisited }} </p>
 {% else %}
-  <h1>Found something?</h1>
+  <h1>Your search for "{{ searchword }}" did not turn up any results.</h1>
 {% endif %}
 
 

@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Searching for a site</title>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+		<meta charset = "UTF-8">
+	</head>
+<body>
+
+<div id="outer">
+<div id="inner">
+
+<div class="centered">
+<h2>Searching for a site: </h2>
+Currently, this only searches the names of sites.  Partial matches are okay.
+</div>
+
+<div class="insidetable">
+<table class="center">
+<form action="/get" method="GET">
+	<tr><td>Name: </td>
+		<td><input type="text" name="name" size=70></td></tr>
+	<tr><td></td><td><div class="centered"><input type="submit" id="button"></div></td></tr>
+</form>
+</table>
+</div>
+
+<p>
+
+</p>
+
+</div>
+</div>
+
+</body>
+</html>
+
+<!-- I hope this works -->
