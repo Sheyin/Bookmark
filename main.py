@@ -52,11 +52,10 @@ def createBookmark():
 @app.route("/search")
 def retrieveSite():
 	# Might need to limit combinations until a better way to pass arguments is learned
-	searchTerm = request.args.get('name', '') 
+	searchTerm = request.args.get('name', '')
+	searchTag = request.args.get('tag', '')
 	
-	if not searchTerm:
-		return render_template('search.html')
-	else:
+	if searchTerm:
 		regex = re.compile('\w*' + searchTerm + '\w*', re.IGNORECASE)
 		site = ""
 		# complete working query:
@@ -79,6 +78,39 @@ def retrieveSite():
 			return render_template('found.html', results=results)
 		else:
 			return render_template('found.html', searchword=searchTerm)
+	
+	# search by category
+	elif searchTag:
+		#regex = re.compile('\w*' + searchTag + '\w*', re.IGNORECASE)
+		site = ""
+		site = db.find({"tags": searchTag})
+		#site = db.find({"tags": {"$regex": regex}})
+		name = ""
+		url = ""
+		desciption = ""
+		dateVisited = ""
+		results = []
+		for doc in site:
+			name = doc['name']
+			url = doc['url']
+			description = doc['description']
+			dateVisited = doc['dateVisited']
+			results.append((name, url, description, dateVisited))
+			pprint.pprint(doc)
+		if site.count() > 0:
+			return render_template('foundTag.html', results=results, tag=searchTag)
+		else:
+			return render_template('foundTag.html', tag=searchTag)
+	# No arguments, just getting to search page 
+	else:
+		# Get all the possible tags from the database
+		site = db.find().distinct("tags")
+		print("Tags: ")
+		tags = []
+		for doc in site:
+			pprint.pprint(doc)
+			tags.append(doc)
+		return render_template('search.html', tags=tags)
 		
 
 

@@ -11,25 +11,22 @@
 <div id="outer">
 <div id="inner">
 
-<div class="centered">
-<h2> Retrieving a bookmark: </h2>
-</div>
+<div class="tag"><h2>{{ tag }}</h2></div>
 
-{% if results %}
 <div class="results">
-	<h2>{{ category }} bookmarks:</h2>
+{% if results %}
 	{% for name, url, description, dateAdded in results %}
 		<p>
 		<a href={{url}}>{{ name }}</a>
 		<br> {{ description }}
-		<br> {{ dateAdded }}
+		<br> Date Added: {{ dateAdded }}
 		</p>
 	{% endfor %}
-
 {% else %}
-	<h1>No results returned.</h1>
+  <h2>No entries found for {{ tag }}.</h2>
 {% endif %}
 
+</div>
 </div>
 </div>
 </div>

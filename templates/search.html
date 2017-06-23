@@ -13,7 +13,7 @@
 
 <div class="centered">
 <h2>Searching for a site: </h2>
-Currently, this only searches the names of sites.  Partial matches are okay.
+Currently, this only searches the names of sites.  Partial matches are okay.  Or, search by tag (category).
 </div>
 
 <div class="insidetable">
@@ -21,6 +21,22 @@ Currently, this only searches the names of sites.  Partial matches are okay.
 <form action="/get" method="GET">
 	<tr><td>Name: </td>
 		<td><input type="text" name="name" size=70></td></tr>
+	<tr><td></td><td><div class="centered"><input type="submit" style="width: 60px"></div></td></tr>
+</form>
+
+<p>
+<form action="/get" method="GET">
+	<tr><td>Tag: </td>
+		{% if tags %}
+		<td><select name="tag">
+			{% for category in tags %}
+				<option value={{ category }}>{{ category }}</option>
+			{% endfor %}
+		</select></td></tr>
+		{% else %}
+		<td><input type="text" name="tag" size=70></td></tr>
+		{% endif %}
+
 	<tr><td></td><td><div class="centered"><input type="submit" style="width: 60px"></div></td></tr>
 </form>
 </table>
