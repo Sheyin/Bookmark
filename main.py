@@ -29,7 +29,12 @@ def createBookmark():
 		name = request.form['name']
 		url = request.form['url']
 		description = request.form['description']
-		tags = request.form['tags']
+		tags_whole = request.form['tags']
+		tags_split = tags_whole.split(',')
+		tags = []
+		print ("tags: --" + str(tags) + "--")
+		for item in tags_split:
+			tags.append(item.rstrip())
 		addedBy = request.form['addedBy']
 
 		# Check if site already exists
@@ -105,12 +110,11 @@ def retrieveSite():
 	else:
 		# Get all the possible tags from the database
 		site = db.find().distinct("tags")
-		print("Tags: ")
-		tags = []
+		categories = []
 		for doc in site:
 			pprint.pprint(doc)
-			tags.append(doc)
-		return render_template('search.html', tags=tags)
+			categories.append(doc)
+		return render_template('search.html', categories=categories)
 		
 
 

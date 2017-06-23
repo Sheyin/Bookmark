@@ -27,9 +27,9 @@ Currently, this only searches the names of sites.  Partial matches are okay.  Or
 <p>
 <form action="/get" method="GET">
 	<tr><td>Tag: </td>
-		{% if tags %}
+		{% if categories %}
 		<td><select name="tag">
-			{% for category in tags %}
+			{% for category in categories %}
 				<option value={{ category }}>{{ category }}</option>
 			{% endfor %}
 		</select></td></tr>
