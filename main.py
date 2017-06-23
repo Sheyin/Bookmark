@@ -31,13 +31,22 @@ def createBookmark():
 		description = request.form['description']
 		tags = request.form['tags']
 		addedBy = request.form['addedBy']
-		# Send data to db
-		result = db.insert_one({'name': name, 'url': url, 'description': description, 'tags': tags, 'dateVisited': datetime.datetime.now(), "lastVisited": datetime.datetime.now(), "snapshot": "null", "addedBy": addedBy})
-		# Return some response
-		if result.acknowledged:
-			return render_template('added.html', name=name)
+
+		# Check if site already exists
+		regex = re.compile('\w*' + url + '\w*', re.IGNORECASE)
+		site = ""
+		# complete working query:
+		site = db.find({"url": {"$regex": regex}})
+		if site:
+			return render_template('error.html', error="Site already exists.")
 		else:
-			return render_template('error.html', error="Unable to add bookmark.")
+			# Send data to db
+			result = db.insert_one({'name': name, 'url': url, 'description': description, 'tags': tags, 'dateVisited': datetime.datetime.now(), "lastVisited": datetime.datetime.now(), "snapshot": "null", "addedBy": addedBy})
+			# Return some response
+			if result.acknowledged:
+				return render_template('added.html', name=name)
+			else:
+				return render_template('error.html', error="Unable to add bookmark.")
 
 @app.route("/get")
 @app.route("/search")
