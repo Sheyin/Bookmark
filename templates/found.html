@@ -17,7 +17,6 @@
 
 <div class="results">
 {% if results %}
-	<h2>{{ category }} bookmarks:</h2>
 	{% for name, url, description, dateAdded in results %}
 		<p>
 		<a href={{url}}>{{ name }}</a>
@@ -25,10 +24,6 @@
 		<br> Date Added: {{ dateAdded }}
 		</p>
 	{% endfor %}
-{% elif url %}
-  <p><a href={{url}}>{{name}}</a>
-  <br>{{description}}
-  <br> Date Visited: {{ dateVisited }} </p>
 {% else %}
   <h1>Your search for "{{ searchword }}" did not turn up any results.</h1>
 {% endif %}

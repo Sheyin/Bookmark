@@ -66,9 +66,7 @@ def retrieveSite():
 			dateVisited = doc['dateVisited']
 			results.append((name, url, description, dateVisited))
 			pprint.pprint(doc)
-		if site.count() == 1:
-			return render_template('found.html', name=name, url=url, description=description, dateVisited=dateVisited)
-		elif site.count() >= 1:
+		if site.count() > 0:
 			return render_template('found.html', results=results)
 		else:
 			return render_template('found.html', searchword=searchTerm)
