@@ -37,7 +37,7 @@ def createBookmark():
 		site = ""
 		# complete working query:
 		site = db.find({"url": {"$regex": regex}})
-		if site:
+		if site.count() > 0:
 			return render_template('error.html', error="Site already exists.")
 		else:
 			# Send data to db
