@@ -31,23 +31,24 @@ def createBookmark():
 		description = request.form['description']
 		tags = request.form['tags']
 		addedBy = request.form['addedBy']
-		print ("Name: " + name + " url: " + url)
-		print ("Description: " + description + " Tags: " + str(tags))
-		print ("Added by: " + addedBy)
 		# Send data to db
+		result = db.insert_one({'name': name, 'url': url, 'description': description, 'tags': tags, 'dateVisited': datetime.datetime.now(), "lastVisited": datetime.datetime.now(), "snapshot": "null", "addedBy": addedBy})
 		# Return some response
-		return render_template('added.html', name=name)
+		if result.acknowledged:
+			return render_template('added.html', name=name)
+		else:
+			return render_template('error.html', error="Unable to add bookmark.")
 
 @app.route("/get")
+@app.route("/search")
 def retrieveSite():
-	# Might need to limit combinations until a better way to pass arguments
-	# is learned
+	# Might need to limit combinations until a better way to pass arguments is learned
 	searchTerm = request.args.get('name', '') 
 	
 	if not searchTerm:
 		return render_template('search.html')
 	else:
-		regex = re.compile('\w*' + searchTerm + '\w*')
+		regex = re.compile('\w*' + searchTerm + '\w*', re.IGNORECASE)
 		site = ""
 		# complete working query:
 		site = db.find({"name": {"$regex": regex}})
@@ -56,21 +57,21 @@ def retrieveSite():
 		name = ""
 		url = ""
 		desciption = ""
-		date = ""
+		dateVisited = ""
 		results = []
 		for doc in site:
 			name = doc['name']
 			url = doc['url']
 			description = doc['description']
-			date = doc['dateVisited']
-			results.append((name, url, description, date))
-			print(str(doc))
+			dateVisited = doc['dateVisited']
+			results.append((name, url, description, dateVisited))
+			pprint.pprint(doc)
 		if site.count() == 1:
-			return render_template('found.html', name=name, url=url, description=description)
+			return render_template('found.html', name=name, url=url, description=description, dateVisited=dateVisited)
 		elif site.count() >= 1:
 			return render_template('found.html', results=results)
 		else:
-			return render_template('found.html', searchword=searchword)
+			return render_template('found.html', searchword=searchTerm)
 		
 
 

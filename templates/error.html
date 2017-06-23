@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Just a temp pages.</title>
+		<title>Bookmark Error</title>
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 		<meta charset = "UTF-8">
 	</head>
@@ -12,16 +12,16 @@
 <div id="inner">
 
 <div class="centered">
-<h2> This is the default page which is very boring. </h2>
+<h2>An error occurred!</h2>
 </div>
 
+<div class="results">
+{% if error %}
+	<h2>{{ error }}</h2>
+{% else %}
+  <h2>Something unknown went wrong.</h2>
+{% endif %}
 
-<p>
-<a href="create">Create a new bookmark</a>
-</p>
-<p>
-<a href="get">Search for a bookmark</a>
-</p>
 
 </div>
 </div>

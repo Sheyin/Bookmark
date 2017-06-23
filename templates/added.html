@@ -1,7 +1,22 @@
 <!doctype html>
-<title>Bookmark Added</title>
+
+<html>
+	<head>
+		<title>Bookmark Added</title>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+		<meta charset = "UTF-8">
+	</head>
+<body>
+
+<div id="outer">
+<div id="inner">
+
+<div class="centered">
+<h2> Adding a bookmark: </h2>
+</div>
+
 {% if name %}
-  <h1>Successfully added {{ name }} to the database!</h1>
+  <h2>Successfully added {{ name }} to the database!</h2>
 {% else %}
-  <h1>Successfully added some bookmark!</h1>
+  <h2>Successfully added some bookmark!</h2>
 {% endif %}

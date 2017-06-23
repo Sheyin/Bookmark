@@ -12,7 +12,7 @@
 <div id="inner">
 
 <div class="centered">
-<h2> Retrieving a bookmark: </h2>
+<h2>Search Results: </h2>
 </div>
 
 <div class="results">
@@ -26,9 +26,9 @@
 		</p>
 	{% endfor %}
 {% elif url %}
-  <h1>Successfully retrieved {{ name }} from the database!</h1>
-  <p> The url is: <a href={{url}}>{{ url }}</a></p>
-  <p> Date Visited: {{ dateVisited }} </p>
+  <p><a href={{url}}>{{name}}</a>
+  <br>{{description}}
+  <br> Date Visited: {{ dateVisited }} </p>
 {% else %}
   <h1>Your search for "{{ searchword }}" did not turn up any results.</h1>
 {% endif %}
