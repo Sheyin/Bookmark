@@ -38,6 +38,7 @@ def createBookmark():
 		addedBy = request.form['addedBy']
 
 		# Check if site already exists
+		# This needs to be refined to check subdomain, allow subreddits etc
 		regex = re.compile('\w*' + url + '\w*', re.IGNORECASE)
 		site = ""
 		# complete working query:
