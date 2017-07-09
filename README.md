@@ -11,8 +11,14 @@ Included in the repository are the python / html files used by Flask.
 <li>Python 3
 <li>pyMongo
 <li>Flask
-<li>mongoDB
+<li>mongoDB installed
+<li>Custom configuration settings in "secret.py" - how to connect to your mongoDB (will add to this later)
 </ul>
+
+<h2>Instructions: </h2>
+
+Fill information in secret.py. (More details later - need to refresh my memory)  In the command line, enter <b>flask main.py</b> to launch the server.
+
 
 <h2>Current State: </h2>
 
